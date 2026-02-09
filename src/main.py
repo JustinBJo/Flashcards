@@ -6,6 +6,7 @@ import sys
 from wordlist_manager import WordlistManager
 from learn_mode import LearnMode
 from test_mode import TestMode
+from memorize_mode import MemorizeMode
 from colors import Colors
 
 
@@ -88,26 +89,30 @@ def select_mode(wordlist):
         print("\n" + Colors.cyan("="*50))
         print(Colors.bold_cyan("            SELECT MODE"))
         print(Colors.cyan("="*50))
-        print(f"  {Colors.yellow('1.')} Learn Mode - Practice with feedback")
-        print(f"  {Colors.yellow('2.')} Test Mode - Scored assessment")
-        print(f"  {Colors.yellow('3.')} Back to wordlist selection")
-        print(f"  {Colors.yellow('4.')} Quit application")
+        print(f"  {Colors.yellow('1.')} Memorize Mode - Master all words")
+        print(f"  {Colors.yellow('2.')} Learn Mode - Practice with feedback")
+        print(f"  {Colors.yellow('3.')} Test Mode - Scored assessment")
+        print(f"  {Colors.yellow('4.')} Back to wordlist selection")
+        print(f"  {Colors.yellow('5.')} Quit application")
         print(Colors.cyan("="*50))
         
         choice = input(Colors.magenta("\nYour choice: ")).strip()
         
         if choice == "1":
+            memorize_mode = MemorizeMode(wordlist)
+            memorize_mode.start()
+        elif choice == "2":
             learn_mode = LearnMode(wordlist)
             learn_mode.start()
-        elif choice == "2":
+        elif choice == "3":
             test_mode = TestMode(wordlist)
             test_mode.start()
-        elif choice == "3":
-            return True  # Continue to select new wordlist
         elif choice == "4":
+            return True  # Continue to select new wordlist
+        elif choice == "5":
             return False  # Exit application
         else:
-            print(Colors.red("Invalid choice. Please enter 1, 2, 3, or 4."))
+            print(Colors.red("Invalid choice. Please enter 1, 2, 3, 4, or 5."))
 
 
 def main():
